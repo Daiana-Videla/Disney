@@ -10,6 +10,7 @@ import com.disney.entidades.Pelicula;
 import com.disney.repositorios.PeliculaRepositorio;
 import com.disney.repositorios.PersonajeRepositorio;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,14 +30,15 @@ public class PeliculaServicio {
    private GeneroServicio generoservicio;
    
    
-   public void crearPelicula (String titulo, Date fechadecreación, Integer calificacion, String personajes, String genero ){
+   public void crearPelicula (String titulo, Date fechadecreación, Integer calificacion, String genero ){
        
        Pelicula pelicula = new Pelicula();
        pelicula.setTitulo(titulo);
        pelicula.setFechadecreación(fechadecreación);
        pelicula.setCalificacion(Integer.MIN_VALUE);
-       pelicula.setPersonajes(personajeservicio.crearPersonaje(titulo));
-       pelicula.setGenero(generoservicio.ingresarGenero(titulo));
+      
+     //  pelicula.setPersonajes(personajeservicio.crearPersonajes(nombre));
+     //  pelicula.setGenero(generoservicio.ingresarGenero(titulo));
        
        
        pelicularepositorio.save(pelicula);
@@ -52,8 +54,8 @@ public class PeliculaServicio {
        pelicula.setTitulo(titulo);
        pelicula.setFechadecreación(fechadecreación);
        pelicula.setCalificacion(Integer.MIN_VALUE);
-       pelicula.setPersonajes(personajeservicio.crearPersonaje(titulo));
-       pelicula.setGenero(generoservicio.ingresarGenero(titulo));
+   //    pelicula.setPersonajes(personajeservicio.crearPersonaje(titulo));
+     //  pelicula.setGenero(generoservicio.ingresarGenero(titulo));
        
        
        pelicularepositorio.save(pelicula);

@@ -21,7 +21,7 @@ public class PersonajeServicio {
       personaje.setEdad(Integer.SIZE);
       personaje.setPeso(Integer.SIZE);
       personaje.setHistoria(nombre);
-    
+    //como agrego las peliculas
         
     return personajerepositorio.save(personaje);
      

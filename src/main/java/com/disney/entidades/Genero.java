@@ -1,6 +1,7 @@
 
 package com.disney.entidades;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,6 +19,9 @@ public class Genero {
  private String id;   
  private String nombre;
  private String imagen;
+
+ 
+private List <Pelicula> pelicula; 
 
     public String getId() {
         return id;
@@ -43,4 +47,13 @@ public class Genero {
         this.imagen = imagen;
     }
 
+    public List<Pelicula> getPelicula() {
+        return pelicula;
+    }
+
+    public void setPelicula(List<Pelicula> pelicula) {
+        this.pelicula = pelicula;
+    }
+
+    
 }

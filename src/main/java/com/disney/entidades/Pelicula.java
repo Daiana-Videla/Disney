@@ -2,9 +2,11 @@
 package com.disney.entidades;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,10 +24,18 @@ private  String titulo;
 private Date fechadecreación;
 private Integer calificacion; //(del 1 al 5).
 
+@ManyToMany
+private List <Personaje> personajes;
 @OneToMany
-private Personaje personajes;
-@OneToMany
-private Genero genero;
+private List < Genero> genero;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getImagen() {
         return imagen;
@@ -59,29 +69,24 @@ private Genero genero;
         this.calificacion = calificacion;
     }
 
-    public Personaje getPersonajes() {
+    public List<Personaje> getPersonajes() {
         return personajes;
     }
 
-    public void setPersonajes(Personaje personajes) {
+    public void setPersonajes(List<Personaje> personajes) {
         this.personajes = personajes;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Genero getGenero() {
+    public List<Genero> getGenero() {
         return genero;
     }
 
-    public void setGenero(Genero genero) {
+    public void setGenero(List<Genero> genero) {
         this.genero = genero;
     }
+
+    
+   
 
 
 
