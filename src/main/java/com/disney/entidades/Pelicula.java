@@ -7,10 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Table(name= "Pelicula")
 public class Pelicula {
     
 
@@ -24,11 +27,11 @@ private  String titulo;
 private Date fechadecreación;
 private Integer calificacion; //(del 1 al 5).
 
-@ManyToMany
-private List <Personaje> personajes;
-@OneToMany
-private List < Genero> genero;
-
+    @OneToMany (mappedBy = "pelicula")
+    private List <Personaje> personajes;
+    @ManyToOne
+    private Genero genero;
+    
     public String getId() {
         return id;
     }
@@ -77,13 +80,15 @@ private List < Genero> genero;
         this.personajes = personajes;
     }
 
-    public List<Genero> getGenero() {
+    public Genero getGenero() {
         return genero;
     }
 
-    public void setGenero(List<Genero> genero) {
+    public void setGenero(Genero genero) {
         this.genero = genero;
     }
+
+   
 
     
    

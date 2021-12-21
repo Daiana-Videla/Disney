@@ -1,49 +1,30 @@
 
 package com.disney.servicios;
 
+import com.disney.Excepciones.ExcepcionesServicio;
 import com.disney.entidades.Personaje;
 import com.disney.repositorios.PersonajeRepositorio;
+import java.util.List;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonajeServicio {
+
+public class PersonajeServicio implements BaseService<Personaje> {
+    
     
   @Autowired  
-   private PersonajeRepositorio personajerepositorio;
+   private PersonajeRepositorio personajeRepositorio;
   
    
-    public Personaje crearPersonaje (String nombre){
-        
-      Personaje personaje= new Personaje ();
-        
-      personaje.setNombre(nombre);
-      personaje.setEdad(Integer.SIZE);
-      personaje.setPeso(Integer.SIZE);
-      personaje.setHistoria(nombre);
-    //como agrego las peliculas
-        
-    return personajerepositorio.save(personaje);
-     
-     
-    }
-    
-    
-    
-    public Personaje modificarPersonaje (String nombre) {
-          Personaje personaje= new Personaje ();
-        
-      personaje.setNombre(nombre);
-      personaje.setEdad(Integer.SIZE);
-      personaje.setPeso(Integer.SIZE);
-      personaje.setHistoria(nombre);
     
         
-    return personajerepositorio.save(personaje);
-     
         
-        
-    }
+    
 
     
     
@@ -71,5 +52,67 @@ public class PersonajeServicio {
 //       
 //        
 //    }
+
+    @Override
+    @Transactional
+    public List<Personaje> findAll() throws ExcepcionesServicio {
+        try {
+            List<Personaje> entities = personajeRepositorio.findAll();
+            return entities;
+        } catch (Exception e) {
+            throw new ExcepcionesServicio(e.getMessage());
+        }
+
+    }
+
+    @Override
+    @Transactional
+    public Personaje findById(String id) throws ExcepcionesServicio {
+        try {
+            Optional<Personaje> entitiOpcional = personajeRepositorio.findById(id);
+            return entitiOpcional.get();
+        } catch (Exception e) {
+            throw new ExcepcionesServicio(e.getMessage());
+        }
+    }
+
+
+    @Override
+    @Transactional
+    public Personaje save(Personaje entity) throws ExcepcionesServicio {
+        try {
+            entity = personajeRepositorio.save(entity);
+            return entity;
+        } catch (Exception e) {
+            throw new ExcepcionesServicio(e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional
+    public Personaje update(String id, Personaje entity) throws ExcepcionesServicio {
+        Optional<Personaje> entityOptional = personajeRepositorio.findById(id);
+        Personaje personaje = entityOptional.get();
+        personaje = personajeRepositorio.save(entity);
+        return personaje;
+    }
+
+        @Override
+        @Transactional
+        public boolean delete(String id) throws ExcepcionesServicio {
+        try {
+			if(personajeRepositorio.existsById(id)) {
+				personajeRepositorio.deleteById(id);
+				return true;
+			}else {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			throw new ExcepcionesServicio(e.getMessage());
+		}
+
+       
     
+    
+    }
 }

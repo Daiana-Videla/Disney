@@ -5,14 +5,15 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Table(name= "Genero")
 public class Genero {
  
-  
-    
-    
+     
  @Id
 @GeneratedValue(generator = "uuid")
 @GenericGenerator(name = "uuid", strategy = "uuid2")     
@@ -20,8 +21,8 @@ public class Genero {
  private String nombre;
  private String imagen;
 
- 
-private List <Pelicula> pelicula; 
+ @OneToMany (mappedBy = "genero")
+    private List <Pelicula> peliculas;
 
     public String getId() {
         return id;
@@ -47,13 +48,15 @@ private List <Pelicula> pelicula;
         this.imagen = imagen;
     }
 
-    public List<Pelicula> getPelicula() {
-        return pelicula;
+    public List<Pelicula> getPeliculas() {
+        return peliculas;
     }
 
-    public void setPelicula(List<Pelicula> pelicula) {
-        this.pelicula = pelicula;
+    public void setPeliculas(List<Pelicula> peliculas) {
+        this.peliculas = peliculas;
     }
+
+  
 
     
 }

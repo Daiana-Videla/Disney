@@ -6,10 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Table(name= "Personaje")
 public class Personaje {
   
     
@@ -24,8 +27,8 @@ private int edad;
 private int peso;
 private String historia;
 
-@ManyToMany
-private List <Pelicula> pelicula; 
+@ManyToOne
+    private Pelicula pelicula; 
 
     public String getId() {
         return id;
@@ -75,13 +78,15 @@ private List <Pelicula> pelicula;
         this.historia = historia;
     }
 
-    public List<Pelicula> getPelicula() {
+    public Pelicula getPelicula() {
         return pelicula;
     }
 
-    public void setPelicula(List<Pelicula> pelicula) {
+    public void setPelicula(Pelicula pelicula) {
         this.pelicula = pelicula;
     }
+
+  
 
 
     
