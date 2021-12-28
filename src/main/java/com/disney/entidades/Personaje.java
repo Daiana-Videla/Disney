@@ -13,13 +13,10 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name= "Personaje")
-public class Personaje {
+public class Personaje  extends Base {
   
     
-@Id
-@GeneratedValue(generator = "uuid")
-@GenericGenerator(name = "uuid", strategy = "uuid2")    
-private String id;    
+    
 
 private  String imagen;
 private String nombre;
@@ -30,14 +27,9 @@ private String historia;
 @ManyToOne
     private Pelicula pelicula; 
 
-    public String getId() {
-        return id;
-    }
+    
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    
     public String getImagen() {
         return imagen;
     }
