@@ -52,6 +52,8 @@ import javax.transaction.Transactional;
             throw new ExcepcionesServicio(e.getMessage());
         }
     }
+  
+
 
     @Override
     @Transactional
